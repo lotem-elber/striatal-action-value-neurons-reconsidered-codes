@@ -1,4 +1,11 @@
 %%
+%if script is run from its folder 'analyses_fig_2_supp_4' add main folder and all its subfolders to path
+ [folder_path folder]=fileparts(pwd);
+ if isequal(folder,'data_sets_of_recorded_neurons')
+      addpath(genpath(folder_path));
+ else
+    disp('current path not in "data_sets_of_recorded_neurons" folder');
+end
 %Analyses of basal ganglia data
 %create file with events matching to units
 names=what('Data');
@@ -23,11 +30,11 @@ for i=1:length(names)
         end
     end
 end
-save('organized_File_list','organized_File_list')
+
 %%
 %create tables of spike data and Q-values for 214 neural recordings
 
-load('organized_File_list.mat')
+
 spike_data_basal_ganglia_phase1=cell(1,214);
 spike_data_basal_ganglia_phase2=cell(1,214);
 spike_data_basal_ganglia_phase3=cell(1,214);
